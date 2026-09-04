@@ -43,33 +43,34 @@
     <div id="emulator"></div>
 
     <script>
-        function startGame() {
-    try {
-        document.getElementById('start-btn').style.display = 'none';
-        document.getElementById('emulator').style.display = 'block';
+    function startGame() {
+        try {
+            document.getElementById('start-btn').style.display = 'none';
+            document.getElementById('emulator').style.display = 'block';
 
-        window.EJS_player = '#emulator';
-        window.EJS_core = 'segaMD'; 
-        window.EJS_gameName = "Sonic the Hedgehog 2";
-        window.EJS_color = '#0064ff';
-        window.EJS_startOnLoaded = true; 
-        window.EJS_gameUrl = 'sonic2.bin'; 
-        
-        window.EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@latest/data/';
+            window.EJS_player = '#emulator';
+            window.EJS_core = 'segaMD'; 
+            window.EJS_gameName = "Sonic the Hedgehog 2";
+            window.EJS_color = '#0064ff';
+            window.EJS_startOnLoaded = true; 
+            
+            window.EJS_gameUrl = window.location.origin + '/sonic2.bin'; 
+            
+            window.EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@latest/data/';
 
-        let script = document.createElement('script');
-        script.src = "https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@latest/data/loader.js";
-        
-        script.onerror = function() {
-            alert("Erro de conexão. Certifique-se de estar rodando em um servidor local (HTTP) e com o AdBlock desativado.");
-        };
-        
-        document.body.appendChild(script);
-    } catch (error) {
-        alert("An error occurred: " + error.message);
+            let script = document.createElement('script');
+            script.src = "https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@latest/data/loader.js";
+            
+            script.onerror = function() {
+                alert("Erro ao carregar os scripts do emulador.");
+            };
+            
+            document.body.appendChild(script);
+        } catch (error) {
+            alert("Ocorreu um erro: " + error.message);
+        }
     }
-}
-    </script>
+</script>
 
 </body>
 </html>
