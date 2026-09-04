@@ -11,28 +11,55 @@
             width: 100%;
             height: 100%;
             background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
         }
         #emulator {
             width: 100%;
             height: 100%;
+            display: none;
+        }
+        #btn-iniciar {
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #0064ff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: sans-serif;
+        }
+        #btn-iniciar:hover {
+            background-color: #0052cc;
         }
     </style>
 </head>
 <body>
 
+    <button id="btn-iniciar" onclick="iniciarJogo()">Iniciar Jogo</button>
     <div id="emulator"></div>
 
     <script>
-        EJS_player = '#emulator';
-        EJS_core = 'segaMD'; 
-        EJS_gameName = "Sonic the Hedgehog 2";
-        EJS_color = '#0064ff';
-        EJS_startOnLoaded = false; 
-        EJS_gameUrl = 'sonic2.bin'; 
-        EJS_pathtodata = 'https://emulatorjs.org';
+        function iniciarJogo() {
+            document.getElementById('btn-iniciar').style.display = 'none';
+            document.getElementById('emulator').style.display = 'block';
+
+            EJS_player = '#emulator';
+            EJS_core = 'segaMD'; 
+            EJS_gameName = "Sonic the Hedgehog 2";
+            EJS_color = '#0064ff';
+            EJS_startOnLoaded = true; 
+            EJS_gameUrl = 'sonic2.bin'; 
+            EJS_pathtodata = 'https://emulatorjs.org';
+
+            let script = document.createElement('script');
+            script.src = "https://emulatorjs.orgloader.js";
+            document.body.appendChild(script);
+        }
     </script>
-    <script src="https://emulatorjs.orgloader.js"></script>
 
 </body>
 </html>
