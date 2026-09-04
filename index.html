@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
             height: 100%;
             display: none;
         }
-        #btn-iniciar {
+        #start-btn {
             padding: 15px 30px;
             font-size: 20px;
             font-weight: bold;
@@ -32,32 +32,42 @@
             cursor: pointer;
             font-family: sans-serif;
         }
-        #btn-iniciar:hover {
+        #start-btn:hover {
             background-color: #0052cc;
         }
     </style>
 </head>
 <body>
 
-    <button id="btn-iniciar" onclick="iniciarJogo()">Iniciar Jogo</button>
+    <button id="start-btn" onclick="startGame()">Start Game</button>
     <div id="emulator"></div>
 
     <script>
-        function iniciarJogo() {
-            document.getElementById('btn-iniciar').style.display = 'none';
-            document.getElementById('emulator').style.display = 'block';
+        function startGame() {
+            try {
+                document.getElementById('start-btn').style.display = 'none';
+                document.getElementById('emulator').style.display = 'block';
 
-            EJS_player = '#emulator';
-            EJS_core = 'segaMD'; 
-            EJS_gameName = "Sonic the Hedgehog 2";
-            EJS_color = '#0064ff';
-            EJS_startOnLoaded = true; 
-            EJS_gameUrl = 'sonic2.bin'; 
-            EJS_pathtodata = 'https://emulatorjs.org';
+                EJS_player = '#emulator';
+                EJS_core = 'segaMD'; 
+                EJS_gameName = "Sonic the Hedgehog 2";
+                EJS_color = '#0064ff';
+                EJS_startOnLoaded = true; 
+                EJS_gameUrl = 'sonic2.bin'; 
+                
+                EJS_pathtodata = 'https://unpkg.com';
 
-            let script = document.createElement('script');
-            script.src = "https://emulatorjs.orgloader.js";
-            document.body.appendChild(script);
+                let script = document.createElement('script');
+                script.src = "https://unpkg.comloader.js";
+                
+                script.onerror = function() {
+                    alert("Error: Failed to load the emulator scripts. Check your internet connection.");
+                };
+                
+                document.body.appendChild(script);
+            } catch (error) {
+                alert("An error occurred: " + error.message);
+            }
         }
     </script>
 
